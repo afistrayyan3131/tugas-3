@@ -47,34 +47,71 @@ class _ProfilState extends State<Profil> {
 
     return Card(
       elevation: 4.0,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          ListTile(
-            title: const Text('NIM'),
-            subtitle: Text(profil[0]), // Replace with NIM from profil
-          ),
-          ListTile(
-            title: const Text('Nama'),
-            subtitle: Text(profil[1]), // Replace with Nama from profil
-          ),
-          ListTile(
-            title: const Text('No HP'),
-            subtitle: Text(profil[2]), // Replace with No HP from profil
-          ),
-          ListTile(
-            title: const Text('E-mail'),
-            subtitle: Text(profil[3]), // Replace with E-mail from profil
-          ),
-          ListTile(
-            title: const Text('Fakultas'),
-            subtitle: Text(profil[4]), // Replace with Fakultas from profil
-          ),
-          ListTile(
-            title: const Text('Jurusan'),
-            subtitle: Text(profil[5]), // Replace with Jurusan from profil
-          ),
-        ],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      margin: const EdgeInsets.all(16.0),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: CircleAvatar(
+                radius: 50.0,
+                backgroundColor: Colors.blue, // You can set your desired avatar background color
+                child: Icon(
+                  Icons.person,
+                  size: 60.0,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
+            ListTile(
+              title: const Text('NIM'),
+              subtitle: Text(
+                profil[0], // Replace with NIM from profil
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              title: const Text('Nama'),
+              subtitle: Text(
+                profil[1], // Replace with Nama from profil
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              title: const Text('No HP'),
+              subtitle: Text(
+                profil[2], // Replace with No HP from profil
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              title: const Text('E-mail'),
+              subtitle: Text(
+                profil[3], // Replace with E-mail from profil
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              title: const Text('Fakultas'),
+              subtitle: Text(
+                profil[4], // Replace with Fakultas from profil
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              title: const Text('Jurusan'),
+              subtitle: Text(
+                profil[5], // Replace with Jurusan from profil
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

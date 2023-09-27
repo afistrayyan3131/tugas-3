@@ -60,7 +60,7 @@ class _FormDataState extends State<FormData> {
     );
   }
 
-// Fungsi untuk memeriksa apakah email valid menggunakan ekspresi reguler
+  // Fungsi untuk memeriksa apakah email valid menggunakan ekspresi reguler
   bool isValidEmail(String? value) {
     if (value == null || value.isEmpty) {
       return false; // If email is null or empty, consider it invalid
@@ -80,7 +80,7 @@ class _FormDataState extends State<FormData> {
     return emailRegExp.hasMatch(value);
   }
 
-// Fungsi untuk memeriksa apakah string hanya berisi angka
+  // Fungsi untuk memeriksa apakah string hanya berisi angka
   bool isNumericString(String? value) {
     if (value == null || value.isEmpty) {
       return false; // If no is null or empty, consider it invalid
@@ -101,56 +101,62 @@ class _FormDataState extends State<FormData> {
         title: const Text('Form Profil'),
         automaticallyImplyLeading: false,
       ),
-      body: Container(
-        margin: const EdgeInsets.all(10),
-        child: Column(children: [
-          _textbox('NIM', _nimController),
-          _textbox('Nama', _namaController),
-          _textbox('No HP', _nohpController, isNumeric: true),
-          _textbox('E-mail', _emailController, isEmail: true),
-          _textbox('Fakultas', _fakultasController),
-          _textbox('Jurusan', _jurusanController),
-          ElevatedButton(
-            onPressed: () {
-              if (_nimController.text.isEmpty || _namaController.text.isEmpty) {
-                // Menampilkan pesan jika NIM atau nama kosong
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('NIM dan Nama harus diisi.'),
-                  ),
-                );
-              } else if (_emailController.text.isNotEmpty &&
-                  !isValidEmail(_emailController.text)) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Masukkan alamat email yang valid.'),
-                  ),
-                );
-              } else if (_nohpController.text.isNotEmpty &&
-                  !isNumericString(_nohpController.text)) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Masukkan nomor HP yang valid.'),
-                  ),
-                );
-              } else {
-                List<String> profil = [
-                  _nimController.text,
-                  _namaController.text,
-                  _nohpController.text,
-                  _emailController.text,
-                  _fakultasController.text,
-                  _jurusanController.text,
-                ];
-                _savedata('mhs', profil);
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const Profil(),
-                ));
-              }
-            },
-            child: const Text("Simpan"),
-          )
-        ]),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: [
+            _textbox('NIM', _nimController),
+            _textbox('Nama', _namaController),
+            _textbox('No HP', _nohpController, isNumeric: true),
+            _textbox('E-mail', _emailController, isEmail: true),
+            _textbox('Fakultas', _fakultasController),
+            _textbox('Jurusan', _jurusanController),
+            Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_nimController.text.isEmpty ||
+                      _namaController.text.isEmpty) {
+                    // Menampilkan pesan jika NIM atau nama kosong
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('NIM dan Nama harus diisi.'),
+                      ),
+                    );
+                  } else if (_emailController.text.isNotEmpty &&
+                      !isValidEmail(_emailController.text)) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Masukkan alamat email yang valid.'),
+                      ),
+                    );
+                  } else if (_nohpController.text.isNotEmpty &&
+                      !isNumericString(_nohpController.text)) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Masukkan nomor HP yang valid.'),
+                      ),
+                    );
+                  } else {
+                    List<String> profil = [
+                      _nimController.text,
+                      _namaController.text,
+                      _nohpController.text,
+                      _emailController.text,
+                      _fakultasController.text,
+                      _jurusanController.text,
+                    ];
+                    _savedata('mhs', profil);
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const Profil(),
+                    ));
+                  }
+                },
+                child: const Text("Simpan"),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
